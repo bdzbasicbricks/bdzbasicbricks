@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Planetary Pong</title>
+        <script  src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+        <script>
+            function start() {
+                
+                //creates the screen
+                sjs.open("target", 1600, 860);
+                
+                //creates the menu text
+                var menu_text = new sjs.Text("PLANETARY PONG", 36, "white")
+                menu_text.centerH()
+                var game_text = new sjs.Text("Use the Arrow Keys and WASD to move the paddles.", 28, "#ff0")
+                game_text.moveTo(800, 43);
+                game_text.centerH()
+                var game_text2 = new sjs.Text("Don't let the ball touch the sides!", 28, "#ff0")
+                game_text2.moveTo(800, 80);
+                game_text2.centerH()
+                
+                //creates the start button
+                var startButton = new sjs.Button("Let's Do This!", function() {
+                    window.location = "pong.html"
+                })
+                startButton.setWidth(300)
+                startButton.setHeight(100)
+                startButton.center()
+                
+            }
+        </script>
+    </head>
+    <body onload="start()">
+        <h1><center>Planetary Pong!</center></h1>
+        <div id="target" style="margin:auto;background:rgb(11, 0, 51);"></div>
+    </body>
+</html>

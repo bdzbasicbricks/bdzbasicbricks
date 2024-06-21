@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>Planetary Pong</title>
+        <script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+        <script>
+            //running variable tells if the game is running to prevent it from starting again
+            var running = 0;
+            //all the games code goes here
+            function game() {
+                if (running == 0){
+                    
+                    //creates the screen
+                    sjs.open("target", 1600, 860);
+                    
+                    //makes the ball and starts it moving
+                    var ball = new sjs.Image("Images/planet.png");
+                    ball.type = "ball";
+                    ball.center();
+                    ball.friction = 0;
+                    ball.bounce();
+                    ball.pushUp(8);
+                    ball.pushLeft(6);
+                    
+                    
+                    //creates the top paddle
+                    var paddle = new sjs.Image("Images/blue.png");
+                    paddle.type = "paddle";
+                    paddle.moveTo(800, 15);
+                    paddle.setWidth(200);
+                    
+                    //creates the bottom paddle
+                    var paddle2 = new sjs.Image("Images/red.png");
+                    paddle2.type = "paddle2";
+                    paddle2.moveTo(800, 825);
+                    paddle2.setWidth(200); 
+
+                    //score
+                    var score = 0;
+                    var score_txt = new sjs.Text("Score: 0", 21, "Blue");
+                    var score2 = 0;
+                    var score_txt2 = new sjs.Text("Score: 0", 21, "Red");
+                    score_txt2.moveTo(0, 840)
+                    //moves the paddles from key presses
+                    sjs.keyDown(LEFT_KEY, function(){
+                        paddle2.pushLeft();
+                    });
+                    sjs.keyDown(RIGHT_KEY, function(){
+                        paddle2.pushRight();
+                    });
+                    sjs.keyDown(A_KEY, function(){
+                        paddle.pushLeft();
+                    });
+                    sjs.keyDown(D_KEY, function(){
+                        paddle.pushRight();
+                    });
+                    
+                    //sounds
+                    var soundEffect = new Audio("Music/pop.mp3")
+                    var soundEffect2 = new Audio("Music/signal.mp3")
+                    
+
+                    //handles collisions
+                    sjs.onHit("ball", "paddle", function(ball, paddle){
+                        soundEffect.play();
+                        sjs.bounceOff(ball, paddle);
+                    })
+                    sjs.onHit("ball", "paddle2", function(ball, paddle2){
+                        soundEffect.play();
+                        sjs.bounceOff(ball, paddle2);
+                    })
+                    //score handling
+                    sjs.onHit("ball", "top_screen", function(ball, screenTop) {
+                        score2 = score2 + 1
+                        score_txt2.setText("Score: " + score2);
+                        sjs.bounceOff(ball, screenTop)
+                        
+                    })
+                    
+                    sjs.onHit("ball", "bottom_screen", function(ball, screenBottom) {
+                        score = score + 1
+                        score_txt.setText("Score: " + score);
+                        sjs.bounceOff(ball, screenBottom)
+                        
+                    })
+                }
+            
+            running = 1
+            }
+        </script>
+    </head>
+    <body onLoad="game()">
+        <center>
+        <h1>Planetary Pong!</h1>
+        </center>
+        <div id="target" style="margin:auto;background:rgb(11, 0, 51);"></div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Portfolio</title>
+        <script  src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+        <script>
+            function start() {
+                
+                //creates the screen
+                sjs.open("target", 1600, 860);
+                
+                //creates the menu text
+                var pong_text = new sjs.Text("PLANETARY PONG", 36, "white")
+                pong_text.centerH()
+                var pongButton = new sjs.Button("Pong", function() {
+                    window.location = "Pong/index.html"
+                })
+                pongButton.setWidth(300)
+                pongButton.setHeight(100)
+                pongButton.center()
+                
+                var game_text = new sjs.Text("Planetary pong is a fun game about getting the planet past your opponent's paddle.", 28, "#ff0")
+                game_text.moveTo(800, 43);
+                game_text.centerH()
+                
+                game_text2.moveTo(800, 80);
+                game_text2.centerH()
+                
+                //creates the start button
+                
+               
+            }
+        </script>
+    </head>
+    <body onload="start()">
+        <h1><center>Bdzbasicbrick's Portfolio</center></h1>
+        <div id="target" style="margin:auto;background:rgb(11, 0, 51);"></div>
+    </body>
+</html>
